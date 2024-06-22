@@ -1,13 +1,20 @@
-export const testPlugin = (args, callback) => {
-    console.log('Extension is working!');
+import ModeToggleButton from '../component/ModeToggleButton';
 
-    return callback(...args);
-};
+// import './Header.style.plugin';
+
+export const renderTopMenu = (args, callback) => (
+    <>
+      { callback(...args) }
+      <div block="Header" elem="DarkModeToggle">
+        <ModeToggleButton />
+      </div>
+    </>
+);
 
 export default {
     'Component/Header/Component': {
         'member-function': {
-            render: testPlugin,
+            renderTopMenu,
         },
     },
 };
